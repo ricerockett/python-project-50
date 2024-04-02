@@ -1,0 +1,11 @@
+# Environment 
+.venv/ 
+# Byte-compiled 
+__pycache__/ 
+# Distribution / packaging 
+dist/ 
+# flake8 linter config 
+setup.cfg 
+# asciinema casts 
+*.cast 
+    
