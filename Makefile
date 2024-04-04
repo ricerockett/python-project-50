@@ -16,3 +16,6 @@ package-uninstall:
 check:
 	poetry run flake8
 	poetry run pytest
+
+test-coverage:
+	poetry run pytest --cov
