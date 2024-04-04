@@ -8,4 +8,6 @@ dist/
 setup.cfg 
 # asciinema casts 
 *.cast 
-    
+.idea/
+coverage.xml
+coverage.*
