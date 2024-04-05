@@ -31,4 +31,5 @@ def generate_diff(file1, file2):
             result.append(f'- {key}: {data1[key]}')
         elif key in (data2.keys() - data1.keys()):
             result.append(f'+ {key}: {data2[key]}')
-    return '\n'.join(result).replace('True', 'true').replace('False', 'false')
+    result = '{\n' + '\n'.join(result) + '\n}'
+    return result.replace('True', 'true').replace('False', 'false')
