@@ -7,25 +7,20 @@ def open_json(path):
         return data
 
 
-def get_common_unchanged_keys(file1, file2):
-    common_keys = set(file1) & set(file2)
-    return list(filter(lambda key: file1[key] == file2[key], common_keys))
-
-
-def get_common_changed_keys(file1, file2):
-    common_keys = set(file1) & set(file2)
-    return set(filter(lambda key: file1[key] != file2[key], common_keys))
+def get_common_keys(dict1, dict2):
+    common_keys = dict1.keys() & dict2.keys()
+    unchanged = list(filter(lambda key: dict1[key] == dict2[key], common_keys))
+    changed = list(filter(lambda key: dict1[key] != dict2[key], common_keys))
+    return {'unchanged': unchanged, 'changed': changed}
 
 
 def generate_diff(file1, file2):
     data1, data2 = open_json(file1), open_json(file2)
-    unchanged_keys = get_common_unchanged_keys(data1, data2)
-    changed_keys = get_common_changed_keys(data1, data2)
     result = []
     for key in sorted(data1.keys() | data2.keys()):
-        if key in unchanged_keys:
+        if key in get_common_keys(data1, data2)['unchanged']:
             result.append(f'  {key}: {data1[key]}')
-        elif key in changed_keys:
+        elif key in get_common_keys(data1, data2)['changed']:
             result.append(f'- {key}: {data1[key]}')
             result.append(f'+ {key}: {data2[key]}')
         elif key in (data1.keys() - data2.keys()):
