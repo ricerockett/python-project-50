@@ -15,6 +15,7 @@ package-uninstall:
 
 lint:
 	poetry run flake8
+
 check:
 	poetry run flake8
 	poetry run pytest

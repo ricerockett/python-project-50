@@ -10,8 +10,7 @@ expected = '''  host: hexlet.io
 + timeout: 20
 - proxy: 123.234.53.22
 - follow: False
-+ verbose: True
-'''
++ verbose: True'''
 
 expected_file1_content = {
     "host": "hexlet.io",
