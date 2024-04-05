@@ -1,8 +1,9 @@
 # import pytest
+import os
 from gendiff.gendiff import generate_diff, open_json
 
-file1_path = 'tests/fixtures/file1.json'
-file2_path = 'tests/fixtures/file2.json'
+file1_path = os.path.abspath('fixtures/file1.json')
+file2_path = os.path.abspath('fixtures/file2.json')
 
 
 # @pytest.fixture
