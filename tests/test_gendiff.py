@@ -5,11 +5,11 @@ file1_path = os.path.abspath('tests/fixtures/file1.json')
 file2_path = os.path.abspath('tests/fixtures/file2.json')
 
 
-expected = '''  host: hexlet.io
+expected = '''- follow: False
+  host: hexlet.io
+- proxy: 123.234.53.22
 - timeout: 50
 + timeout: 20
-- proxy: 123.234.53.22
-- follow: False
 + verbose: True'''
 
 expected_file1_content = {
