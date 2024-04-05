@@ -1,30 +1,29 @@
 import os
-from gendiff.gendiff import generate_diff, open_json
+from gendiff.gendiff import generate_diff, get_common_keys, open_json
 
-file1_path = os.path.abspath('tests/fixtures/file1.json')
-file2_path = os.path.abspath('tests/fixtures/file2.json')
-
-
-expected = '''- follow: False
-  host: hexlet.io
-- proxy: 123.234.53.22
-- timeout: 50
-+ timeout: 20
-+ verbose: True'''
-
-expected_file1_content = {
-    "host": "hexlet.io",
-    "timeout": 50,
-    "proxy": "123.234.53.22",
-    "follow": False
-}
+file1_path = 'tests/fixtures/file1.json'
+file2_path = 'tests/fixtures/file2.json'
+expected_diff = 'tests/fixtures/expected_diff'
 
 
-def test_open_json():
-    result = open_json(file1_path)
-    assert result == expected_file1_content
+def get_path(file):
+    return os.path.abspath(file)
+
+
+def get_two_dicts():
+    dict1 = open_json(get_path(file1_path))
+    dict2 = open_json(get_path(file2_path))
+    return dict1, dict2
 
 
 def test_generate_diff():
-    result = generate_diff(file1_path, file2_path)
-    assert result == expected
+    expected = open(get_path(expected_diff), 'r').read()
+    result = generate_diff(get_path(file1_path), get_path(file2_path))
+    assert expected == result
+
+
+def test_get_common_keys():
+    expected = {'changed': ['timeout'], 'unchanged': ['host']}
+    dict1, dict2 = get_two_dicts()
+    result = get_common_keys(dict1, dict2)
+    assert expected == result
