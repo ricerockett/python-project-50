@@ -1,5 +1,5 @@
 import os
-from gendiff.gendiff import generate_diff, get_common_keys, open_json
+from gendiff.gendiff import generate_diff, get_common_keys, open_file
 
 file1_path = 'tests/fixtures/file1.json'
 file2_path = 'tests/fixtures/file2.json'
@@ -11,8 +11,8 @@ def get_path(file):
 
 
 def get_two_dicts():
-    dict1 = open_json(get_path(file1_path))
-    dict2 = open_json(get_path(file2_path))
+    dict1 = open_file(get_path(file1_path))
+    dict2 = open_file(get_path(file2_path))
     return dict1, dict2
 
 

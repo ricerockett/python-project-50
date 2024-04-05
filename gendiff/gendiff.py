@@ -1,9 +1,13 @@
+import yaml
 import json
 
 
-def open_json(path):
+def open_file(path):
     with open(path, 'r') as file:
-        data = json.load(file)
+        if path.endswith('.yaml') or path.endswith('.yml'):
+            data = yaml.load(file, Loader=yaml.Loader)
+        elif path.endswith('.json'):
+            data = json.load(file)
         return data
 
 
@@ -15,7 +19,7 @@ def get_common_keys(dict1, dict2):
 
 
 def generate_diff(file1, file2):
-    data1, data2 = open_json(file1), open_json(file2)
+    data1, data2 = open_file(file1), open_file(file2)
     result = []
     for key in sorted(data1.keys() | data2.keys()):
         if key in get_common_keys(data1, data2)['unchanged']:
@@ -27,4 +31,4 @@ def generate_diff(file1, file2):
             result.append(f'- {key}: {data1[key]}')
         elif key in (data2.keys() - data1.keys()):
             result.append(f'+ {key}: {data2[key]}')
-    return '\n'.join(result)
+    return '\n'.join(result).replace('True', 'true').replace('False', 'false')
