@@ -10,7 +10,7 @@ def open_json(path):
 
 def generate_diff(file1, file2):
     file1 = open_json(file1)
-    file2 = copy.deepcopy(open_json(file2))
+    file2 = open_json(file2)
     common_keys = []
     result = ''
     for key in file1:
@@ -29,4 +29,5 @@ def generate_diff(file1, file2):
         file2.pop(key)
     for key in file2:
         result += f'+ {key}: {file2[key]}\n'
+        
     return result
