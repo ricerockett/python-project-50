@@ -14,11 +14,11 @@ expected = '''  host: hexlet.io
 '''
 
 expected_file1_content = {
-        "host": "hexlet.io",
-        "timeout": 50,
-        "proxy": "123.234.53.22",
-        "follow": False
-    }
+    "host": "hexlet.io",
+    "timeout": 50,
+    "proxy": "123.234.53.22",
+    "follow": False
+}
 
 
 def test_open_json():

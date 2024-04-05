@@ -1,5 +1,4 @@
 import json
-import copy
 
 
 def open_json(path):
@@ -29,5 +28,5 @@ def generate_diff(file1, file2):
         file2.pop(key)
     for key in file2:
         result += f'+ {key}: {file2[key]}\n'
-        
+
     return result

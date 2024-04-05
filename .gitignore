@@ -10,4 +10,4 @@ setup.cfg
 *.cast 
 .idea/
 coverage.xml
-coverage.*
+.coverage
